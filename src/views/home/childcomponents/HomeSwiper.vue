@@ -1,6 +1,6 @@
 <template>
   <div>
-    <swiper>
+    <swiper class="HomeSwiper">
       <swiper-item v-for="item in banners" :key="item.imgurl">
         <a :href="item.imgurl">
           <img :src="item.imgurl" alt="" />
@@ -30,4 +30,7 @@ export default {
 </script>
 
 <style scoped>
+.HomeSwiper{
+  margin-top: 44px;
+}
 </style>

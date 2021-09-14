@@ -16,9 +16,14 @@ export default {
 </script>
 <style>
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   height: 44px;
   line-height: 44px;
+  z-index: 999;
 }
 .left,.right {
   width: 60px;
