@@ -12,7 +12,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .tabbar {
   display: flex;
   position: fixed;

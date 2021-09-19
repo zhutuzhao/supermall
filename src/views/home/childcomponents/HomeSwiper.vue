@@ -3,7 +3,7 @@
     <swiper class="HomeSwiper">
       <swiper-item v-for="item in banners" :key="item.imgurl">
         <a :href="item.imgurl">
-          <img :src="item.imgurl" alt="" />
+          <img :src="item.imgurl" alt="" @load="imgLoad" />
         </a>
       </swiper-item>
     </swiper>
@@ -25,12 +25,15 @@ export default {
   },
   components:{
     Swiper, SwiperItem
+  },
+  methods:{
+    imgLoad(){
+      this.$emit('imgLoad')
+    }
   }
 };
 </script>
 
 <style scoped>
-.HomeSwiper{
-  margin-top: 44px;
-}
+
 </style>

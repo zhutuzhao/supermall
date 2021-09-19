@@ -28,11 +28,11 @@ export default {
       currentIndex: 0,
     };
   },
-  methods:{
-    itemClick(index){
-      this.currentIndex = index
-    }
-  }
+  methods: {
+    itemClick(index) {
+      this.$emit("tabClick",index);
+    },
+  },
 };
 </script>
 

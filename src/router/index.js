@@ -6,6 +6,7 @@ const Category = ()=>import('../views/category/Category.vue')
 const Profile = ()=>import('../views/profile/Profile.vue')
 const Cart = ()=>import('../views/cart/Cart.vue')
 const Home = ()=>import('../views/home/Home.vue')
+const Detail = ()=>import('../views/detail/Detail.vue')
 const routes = [
   {
     path:'',
@@ -26,6 +27,10 @@ const routes = [
   {
     path:'/Category',
     component:Category
+  },
+  {
+    path:'/Detail/:url',
+    component:Detail
   },
 ]
 
