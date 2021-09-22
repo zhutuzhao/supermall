@@ -6,6 +6,7 @@ export function debounce(func, delay) {
     timer = setTimeout(() => {
       //设置定时器，到一定时间就执行需要防抖执行的函数
       func.apply(this, args);
+      console.log('刷下');
     }, delay);
   };
 }

@@ -15,6 +15,7 @@ export default {
     position: fixed;
     right: 8px;
     bottom: 50px;
+    z-index: 1000;
 }
 .backTop img{ 
     width: 43px;

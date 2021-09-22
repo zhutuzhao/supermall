@@ -37,7 +37,7 @@ import navBar from "components/common/navbar/navBar.vue";
 import TabContral from "components/content/tabContral/TabContral.vue";
 import GoodsList from "components/content/goodsList/GoodsList.vue";
 import BetterScroll from "components/common/scroll/BetterScroll.vue";
-import BackTop from "components/content/backTop/BackTop.vue";
+// import BackTop from "components/content/backTop/BackTop.vue";
 
 import HomeSwiper from "views/home/childcomponents/HomeSwiper.vue";
 import HomeRecommend from "views/home/childcomponents/HomeRecommend.vue";
@@ -46,6 +46,7 @@ import FeatureView from "views/home/childcomponents/FeatureView.vue";
 import { getHomeGoods, getHomeMutildata } from "network/home";
 
 import { debounce } from "common/utils.js";
+import { imgOnloadListener,backTopMixin } from "common/mixin.js";
 export default {
   name: "Home",
   components: {
@@ -56,8 +57,9 @@ export default {
     TabContral,
     GoodsList,
     BetterScroll,
-    BackTop,
+    // BackTop,
   },
+  mixins: [imgOnloadListener,backTopMixin],
   data() {
     return {
       type: "pop",
@@ -76,10 +78,11 @@ export default {
           list: [],
         },
       },
-      isShowTop: false,
+      // isShowTop: false,
       isFixed: false,
       tabContralHeight: 0,
       scrollPosition: 0,
+      // refresh_w: null,
     };
   },
   created() {
@@ -89,10 +92,16 @@ export default {
     this.getGoods_m("new");
   },
   mounted() {
-    const refresh = debounce(this.$refs.scroll.refresh, 2000);
-    this.$bus.$on("imgOnload", () => {
-      refresh(); //闭包，refresh不会被清理
-    });
+    // const refresh = debounce(this.$refs.scroll.refresh, 3000);
+    // // this.$bus.$on("imgOnload", () => {
+    // //   refresh(); //闭包，refresh不会被清理
+    // //   console.log("imgOnloadOn");
+    // // });
+    // this.refresh_w = () => {
+    //   refresh();
+    //   console.log("imgOnloadOn-ho");
+    // };
+    // // this.$bus.$on("imgOnload", this.refresh_w);
   },
   methods: {
     getHomeMutildata_m() {
@@ -122,9 +131,9 @@ export default {
           break;
       }
     },
-    topClick() {
-      this.$refs.scroll.scrollTo(0, 0, 800);
-    },
+    // topClick() {
+    //   this.$refs.scroll.scrollTo(0, 0, 800);
+    // },
     contentScroll(option) {
       this.isShowTop = -option.y > 500;
       this.isFixed = -option.y > this.tabContralHeight;
@@ -138,11 +147,14 @@ export default {
     },
   },
   activated() {
-    this.$refs.scroll.refresh()
+    this.$refs.scroll.refresh();
     this.$refs.scroll.scrollTo(0, this.scrollPosition, 0);
+    this.$bus.$on("imgOnload", this.refresh_w);
   },
   deactivated() {
-    this.scrollPosition = this.$refs.scroll.bs.y
+    this.scrollPosition = this.$refs.scroll.bs.y;
+    console.log("deactivated");
+    this.$bus.$off("imgOnload", this.refresh_w);
   },
 };
 </script>

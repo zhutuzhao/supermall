@@ -3,7 +3,7 @@
     <swiper class="HomeSwiper">
       <swiper-item v-for="item in banners" :key="item.imgurl">
         <a :href="item.imgurl">
-          <img :src="item.imgurl" alt="" @load="imgLoad" />
+          <img v-lazy="item.imgurl" alt="" @load="imgLoad" />
         </a>
       </swiper-item>
     </swiper>
